@@ -22,6 +22,7 @@ export default /* GraphQL */ `
     email: String!
     bio: String
     birthdate: String
+    books: [Book]
   }
 
   input BookInput {
