@@ -6,7 +6,11 @@ import { expressMiddleware } from "@apollo/server/express4";
 
 async function startServer() {
   const app: Express = express();
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "*",
+    })
+  );
   app.use(bodyParser.json());
   const server = new ApolloServer({
     typeDefs: /* GraphQL */ `
