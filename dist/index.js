@@ -8,6 +8,8 @@ const server_1 = require("@apollo/server");
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const express4_1 = require("@apollo/server/express4");
+const resolvers_1 = __importDefault(require("./graphql/resolvers"));
+const typedefs_1 = __importDefault(require("./graphql/typedefs"));
 async function startServer() {
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)({
@@ -15,16 +17,8 @@ async function startServer() {
     }));
     app.use(body_parser_1.default.json());
     const server = new server_1.ApolloServer({
-        typeDefs: /* GraphQL */ `
-      type Query {
-        hello: String
-      }
-    `,
-        resolvers: {
-            Query: {
-                hello: () => "Hello world!",
-            },
-        },
+        typeDefs: typedefs_1.default,
+        resolvers: resolvers_1.default,
     });
     await server.start();
     app.use("/", (0, express4_1.expressMiddleware)(server, {
