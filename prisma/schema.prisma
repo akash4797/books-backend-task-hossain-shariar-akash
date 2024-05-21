@@ -42,11 +42,11 @@ model Book {
 }
 
 model Author {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  bio       String
-  birthdate DateTime
+  bio       String?
+  birthdate DateTime?
   email     String
   books     Book[]
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 }

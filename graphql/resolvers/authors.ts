@@ -13,7 +13,22 @@ export default {
         },
       });
     },
-    addauthor: async (_: any, { name, email, bio, birthdate }: any) => {
+  },
+  Mutation: {
+    addauthor: async (
+      _: any,
+      {
+        authorinput,
+      }: {
+        authorinput: {
+          name: string;
+          email: string;
+          bio: string;
+          birthdate: string;
+        };
+      }
+    ) => {
+      const { name, email, bio, birthdate } = authorinput;
       return await prisma.author.create({
         data: {
           name: name,

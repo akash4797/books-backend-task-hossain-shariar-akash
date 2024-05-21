@@ -23,6 +23,7 @@ export default /* GraphQL */ `
     bio: String
     birthdate: String
     books: [Book]
+    createdAt: String
   }
 
   input BookInput {
@@ -68,7 +69,7 @@ export default /* GraphQL */ `
     getbooks: [Book]!
     getonebook(bookinput: BookGetInput): Book!
     getauthors: [Author]!
-    getoneauthor(authorinput: AuthorGetInput): Author!
+    getauthor(authorinput: AuthorGetInput): Author!
     login(logininput: LoginInput): User!
   }
 

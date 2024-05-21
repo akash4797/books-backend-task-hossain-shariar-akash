@@ -3,6 +3,8 @@ import { ApolloServer } from "@apollo/server";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { expressMiddleware } from "@apollo/server/express4";
+import resolvers from "./graphql/resolvers";
+import typedefs from "./graphql/typedefs";
 
 async function startServer() {
   const app: Express = express();
@@ -13,16 +15,8 @@ async function startServer() {
   );
   app.use(bodyParser.json());
   const server = new ApolloServer({
-    typeDefs: /* GraphQL */ `
-      type Query {
-        hello: String
-      }
-    `,
-    resolvers: {
-      Query: {
-        hello: () => "Hello world!",
-      },
-    },
+    typeDefs: typedefs,
+    resolvers: resolvers,
   });
   await server.start();
   app.use(
