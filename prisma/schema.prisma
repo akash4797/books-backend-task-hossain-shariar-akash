@@ -15,11 +15,11 @@ datasource db {
 
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
   email     String   @unique
   password  String
   type      TYPE     @default(NORMAL)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 enum TYPE {
@@ -39,7 +39,6 @@ model Book {
   author      Author   @relation(fields: [id], references: [id])
   genre       String[]
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 }
 
 model Author {
@@ -50,5 +49,4 @@ model Author {
   email     String
   books     Book[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
