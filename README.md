@@ -34,6 +34,7 @@ Here is my Properties and Use Case analysis link in eraser.io -> [URL](https://a
 - Run `npx prisma db push` to push the database schema
 - Run `yarn dev` to start the development server
 - Run `yarn start` to start the production server
+- Go to `http://localhost:4000/` to view Apollo Graphql UI. Or you can use Insomia/Postman to play with data.
 
 ## GraphQL Operational endpoints
 
