@@ -5,6 +5,7 @@ import cors from "cors";
 import { expressMiddleware } from "@apollo/server/express4";
 import resolvers from "./graphql/resolvers";
 import typedefs from "./graphql/typedefs";
+import cookieParser from "cookie-parser";
 
 async function startServer() {
   const app: Express = express();
@@ -15,6 +16,7 @@ async function startServer() {
     })
   );
   app.use(bodyParser.json());
+  app.use(cookieParser());
   const server = new ApolloServer({
     typeDefs: typedefs,
     resolvers: resolvers,
