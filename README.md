@@ -2,7 +2,7 @@
 
 ## Description
 
-This task has given by Rose Tech Solution to develop a book management system as a candidate of interview.
+This task has given by RoseTech Solutions Ltd. to develop a book management system in purpose of interview exam.
 
 ## Application Details
 
