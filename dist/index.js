@@ -14,6 +14,7 @@ async function startServer() {
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)({
         origin: "*",
+        credentials: true,
     }));
     app.use(body_parser_1.default.json());
     const server = new server_1.ApolloServer({

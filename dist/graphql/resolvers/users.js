@@ -30,8 +30,40 @@ const db_1 = require("../../lib/db");
 const argon2 = __importStar(require("argon2"));
 const apollo_server_express_1 = require("apollo-server-express");
 const isEmail_js_1 = __importDefault(require("validator/lib/isEmail.js"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 exports.default = {
-    Query: {},
+    Query: {
+        login: async (_, { logininput, }, { res }) => {
+            const { email, password } = logininput;
+            const user = await db_1.prisma.user.findUnique({
+                where: {
+                    email: email,
+                },
+            });
+            if (!user) {
+                throw new apollo_server_express_1.AuthenticationError("User does not exist");
+            }
+            const validPassword = await argon2.verify(user.password, password);
+            if (!validPassword) {
+                throw new apollo_server_express_1.AuthenticationError("Wrong password");
+            }
+            const payload = {
+                id: user.id,
+                email: user.email,
+                role: user.role,
+            };
+            const token = jsonwebtoken_1.default.sign(payload, process.env.JWT_SECRET, {
+                expiresIn: "1d",
+            });
+            res.cookie("token", token, {
+                httpOnly: true,
+                sameSite: "none",
+                maxAge: 1000 * 60 * 60 * 24,
+                secure: process.env.NODE_ENV === "production",
+            });
+            return user;
+        },
+    },
     Mutation: {
         register: async (_, { registerinput, }) => {
             const { name, email, password, role } = registerinput;

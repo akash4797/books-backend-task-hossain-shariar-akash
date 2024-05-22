@@ -6,7 +6,51 @@ import isEmail from "validator/lib/isEmail.js";
 import jwt from "jsonwebtoken";
 
 export default {
-  Query: {},
+  Query: {
+    login: async (
+      _: any,
+      {
+        logininput,
+      }: {
+        logininput: { email: string; password: string };
+      },
+      { res }: { res: Response }
+    ) => {
+      const { email, password } = logininput;
+      const user = await prisma.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+      if (!user) {
+        throw new AuthenticationError("User does not exist");
+      }
+
+      const validPassword = await argon2.verify(user.password, password);
+      if (!validPassword) {
+        throw new AuthenticationError("Wrong password");
+      }
+
+      const payload = {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      };
+
+      const token = jwt.sign(payload, process.env.JWT_SECRET!, {
+        expiresIn: "1d",
+      });
+
+      res.cookie("token", token, {
+        httpOnly: true,
+        sameSite: "none",
+        maxAge: 1000 * 60 * 60 * 24,
+        secure: process.env.NODE_ENV === "production",
+      });
+
+      return user;
+    },
+  },
   Mutation: {
     register: async (
       _: any,
