@@ -6,7 +6,11 @@ export default {
     getauthors: async () => {
       return await prisma.author.findMany();
     },
-    getauthor: async (_: any, { id }: { id: string }) => {
+    getauthor: async (
+      _: any,
+      { authorinput }: { authorinput: { id: string } }
+    ) => {
+      const { id } = authorinput;
       return await prisma.author.findUnique({
         where: {
           id: id,
