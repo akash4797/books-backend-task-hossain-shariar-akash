@@ -1,8 +1,12 @@
 import { prisma } from "../../lib/db";
+import { Request } from "express";
+import verifyToken from "../../context/verifytoken";
+import { UserInputError, AuthenticationError } from "apollo-server-express";
 
 export default {
   Query: {
-    getbooks: async () => {
+    getbooks: async (_: any, __: any, { req }: { req: Request }) => {
+      await verifyToken(req);
       return await prisma.book.findMany({
         include: {
           author: true,
@@ -10,7 +14,12 @@ export default {
       });
     },
 
-    getbook: async (_: any, { bookinput }: { bookinput: { id: string } }) => {
+    getbook: async (
+      _: any,
+      { bookinput }: { bookinput: { id: string } },
+      { req }: { req: Request }
+    ) => {
+      await verifyToken(req);
       const { id } = bookinput;
       return await prisma.book.findUnique({
         where: {
@@ -40,8 +49,13 @@ export default {
           publisher: string;
           published: string;
         };
-      }
+      },
+      { req }: { req: Request }
     ) => {
+      const user = await verifyToken(req);
+      if (user && user.role !== "SPECIAL") {
+        throw new AuthenticationError("Unauthorized");
+      }
       const {
         isbn,
         title,
