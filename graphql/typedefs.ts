@@ -1,11 +1,13 @@
 export default /* GraphQL */ `
   type User {
+    id: String!
     name: String!
     email: String!
     password: String!
     createdAt: String
   }
   type Book {
+    id: String!
     isbn: String!
     title: String!
     subtitle: String
@@ -18,6 +20,7 @@ export default /* GraphQL */ `
     createdAt: String
   }
   type Author {
+    id: String!
     name: String!
     email: String!
     bio: String
@@ -34,7 +37,7 @@ export default /* GraphQL */ `
     website: String
     publisher: String!
     published: String!
-    author: String!
+    authorid: String!
     genre: [String!]
   }
 
@@ -67,7 +70,7 @@ export default /* GraphQL */ `
 
   type Query {
     getbooks: [Book]!
-    getonebook(bookinput: BookGetInput): Book!
+    getbook(bookinput: BookGetInput): Book!
     getauthors: [Author]!
     getauthor(authorinput: AuthorGetInput): Author!
     login(logininput: LoginInput): User!
