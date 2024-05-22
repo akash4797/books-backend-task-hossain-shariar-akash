@@ -37,7 +37,7 @@ Here is my Properties and Use Case analysis link in eraser.io -> [text](https://
 
 ## GraphQL Operational endpoints
 
-Server - http://localhost:4000/
+Server - http://localhost:4000/ [You can change the port in .env file]
 
 Queries - login, getauthors, getauthor [for indivisual author], getbooks, getbook [for individual book]
 

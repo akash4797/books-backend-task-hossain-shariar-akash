@@ -27,6 +27,6 @@ async function startServer() {
     app.use("/", (0, express4_1.expressMiddleware)(server, {
         context: async ({ req, res }) => ({ req, res }),
     }));
-    app.listen(4000);
+    app.listen(process.env.PORT);
 }
 startServer();

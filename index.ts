@@ -28,7 +28,7 @@ async function startServer() {
       context: async ({ req, res }) => ({ req, res }),
     })
   );
-  app.listen(4000);
+  app.listen(process.env.PORT);
 }
 
 startServer();
