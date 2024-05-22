@@ -4,7 +4,11 @@ import { UserInputError, AuthenticationError } from "apollo-server-express";
 export default {
   Query: {
     getauthors: async () => {
-      return await prisma.author.findMany();
+      return await prisma.author.findMany({
+        include: {
+          books: true,
+        },
+      });
     },
     getauthor: async (
       _: any,
@@ -14,6 +18,9 @@ export default {
       return await prisma.author.findUnique({
         where: {
           id: id,
+        },
+        include: {
+          books: true,
         },
       });
     },

@@ -4,13 +4,20 @@ const db_1 = require("../../lib/db");
 exports.default = {
     Query: {
         getauthors: async () => {
-            return await db_1.prisma.author.findMany();
+            return await db_1.prisma.author.findMany({
+                include: {
+                    books: true,
+                },
+            });
         },
         getauthor: async (_, { authorinput }) => {
             const { id } = authorinput;
             return await db_1.prisma.author.findUnique({
                 where: {
                     id: id,
+                },
+                include: {
+                    books: true,
                 },
             });
         },
