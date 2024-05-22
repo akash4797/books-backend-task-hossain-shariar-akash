@@ -5,7 +5,7 @@ exports.default = `
     id: String!
     name: String!
     email: String!
-    password: String!
+    role: String!
     createdAt: String
   }
   type Book {
@@ -68,6 +68,7 @@ exports.default = `
     email: String!
     password: String!
     confirmpassword: String!
+    role: String!
   }
 
   type Query {

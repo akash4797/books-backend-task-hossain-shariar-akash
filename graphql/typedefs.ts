@@ -3,7 +3,7 @@ export default /* GraphQL */ `
     id: String!
     name: String!
     email: String!
-    password: String!
+    role: String!
     createdAt: String
   }
   type Book {
@@ -66,6 +66,7 @@ export default /* GraphQL */ `
     email: String!
     password: String!
     confirmpassword: String!
+    role: String!
   }
 
   type Query {
