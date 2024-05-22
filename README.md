@@ -52,6 +52,13 @@ Mutations - register, addauthor, addbook
 - To add author or book, user should be logged in and role should be SPECIAL.
 - To add book user need to pick an ISO date format in addbook mutation. but the field is optional.
 
+## Security Implementation
+
+- In register mutation, password is hashed using argon2.
+- In login query, password is compared using argon2.
+- Used JWT for authentication.
+- Added middleware context to verify token for each query and mutation.
+
 ## Consideration
 
 - Added .env file in the github for making easy setup.
