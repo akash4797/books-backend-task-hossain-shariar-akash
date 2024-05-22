@@ -6,19 +6,19 @@ This task has given by Rose Tech Solution to develop a book management system as
 
 ## Application Details
 
-i. The API will provide a list of books and authors that can be created
-using an endpoint. It will also show only one book/author and their
-details.
-ii. The details of the books and authors will include names, publication
-dates, and other relevant information.
-iii. Each book will have a list of genres it belongs to.
-iv. Authentication is required. Some authenticated users will be able to
-create a book/author entry. Other guest users or logged-in normal users
-will only be able to see the list or an individual detail of a book/author.
+- The API will provide a list of books and authors that can be created
+  using an endpoint. It will also show only one book/author and their
+  details.
+- The details of the books and authors will include names, publication
+  dates, and other relevant information.
+- Each book will have a list of genres it belongs to.
+- Authentication is required. Some authenticated users will be able to
+  create a book/author entry. Other guest users or logged-in normal users
+  will only be able to see the list or an individual detail of a book/author.
 
 ## Application Analysis
 
-Here is my Properties and Use Case analysis link in eraser.io -> [text](https://app.eraser.io/workspace/nP1Ags6eMW4Jpx4b3WYV?origin=share)
+Here is my Properties and Use Case analysis link in eraser.io -> [URL](https://app.eraser.io/workspace/nP1Ags6eMW4Jpx4b3WYV?origin=share)
 
 ## Prerequisites
 
