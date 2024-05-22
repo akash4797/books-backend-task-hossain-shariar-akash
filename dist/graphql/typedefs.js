@@ -16,7 +16,7 @@ exports.default = `
     descirption: String
     website: String
     publisher: String!
-    published: String!
+    published: String
     author: Author!
     genre: [String!]
     createdAt: String

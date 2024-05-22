@@ -28,18 +28,18 @@ enum ROLE {
 }
 
 model Book {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   isbn        String
   title       String
   subtitle    String?
   descirption String?
   website     String?
   publisher   String
-  published   DateTime
-  author      Author   @relation(fields: [authorid], references: [id])
-  authorid    String   @db.ObjectId
+  published   DateTime?
+  author      Author    @relation(fields: [authorid], references: [id])
+  authorid    String    @db.ObjectId
   genre       String[]
-  createdAt   DateTime @default(now())
+  createdAt   DateTime  @default(now())
 }
 
 model Author {
